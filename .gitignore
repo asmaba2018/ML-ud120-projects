@@ -10,4 +10,5 @@ my_classifier.pkl
 my_dataset.pkl
 my_feature_list.pkl
 .DS_Store
+.vscode
 __pycache__
