@@ -1,4 +1,4 @@
-# !/usr/bin/python3
+#!/usr/bin/python3
 
 # print("Checking for nltk")
 # try:
@@ -35,15 +35,12 @@
 # with open(filename, "wb") as f:
 #     r = requests.get(url)
 #     f.write(r.content)
-# print("Download Complete!")
+print("Download Complete!")
 
-# print("Unzipping Enron dataset (This may take a while)")
-print("Openning Enron dataset !")
-import tarfile
-# tfile = tarfile.open("../enron_mail_20150507.tar.gz")
-tfile = tarfile.open("..\enron_mail_20150507.tar.gz")
 print("Unzipping Enron dataset (This may take a while)")
-tfile.extractall(".")
+import tarfile
+tfile = tarfile.open("../enron_mail_20150507.tar.gz")
+tfile.extractall(path='.')
 tfile.close()
 
 print("You're ready to go!")
