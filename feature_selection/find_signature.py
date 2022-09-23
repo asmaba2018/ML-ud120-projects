@@ -10,8 +10,8 @@ numpy.random.seed(42)
 ### mini-project.
 words_file = "../text_learning/your_word_data.pkl" 
 authors_file = "../text_learning/your_email_authors.pkl"
-word_data = joblib.load( open(words_file, "r"))
-authors = joblib.load( open(authors_file, "r") )
+word_data = joblib.load( open(words_file, "rb"))
+authors = joblib.load( open(authors_file, "rb") )
 
 
 
@@ -38,5 +38,15 @@ labels_train   = labels_train[:150]
 
 ### your code goes here
 
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(features_train,labels_train)
+print(clf.score(features_test,labels_test))
+importances = clf.feature_importances_
+indices = numpy.argsort(importances)[::-1]
 
 
+for i in range(10):
+  print(f"{i + 1} feature no.{indices[i]} ({importances[indices[i]]})")
+
+print(vectorizer.get_feature_names_out()[32639])
