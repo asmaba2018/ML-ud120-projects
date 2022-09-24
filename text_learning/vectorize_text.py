@@ -76,8 +76,15 @@ print("Emails Processed")
 from_sara.close()
 from_chris.close()
 
-joblib.dump( word_data, open("../text_learning/your_word_data.pkl", "wb") )
-joblib.dump( from_data, open("../text_learning/your_email_authors.pkl", "wb") )
+# joblib.dump( word_data, open("../text_learning/your_word_data.pkl", "wb") )
+# joblib.dump( from_data, open("../text_learning/your_email_authors.pkl", "wb") )
 
+print(word_data[152])
 
 ### in Part 4, do TfIdf vectorization here
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(stop_words='english')
+vectorizer.fit(word_data)
+print(len(vectorizer.get_feature_names_out()))
+print(vectorizer.get_feature_names_out()[34597])
