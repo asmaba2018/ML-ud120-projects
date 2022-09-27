@@ -35,5 +35,20 @@ from sklearn.model_selection import train_test_split
 features_train,features_test,labels_train,labels_test = train_test_split(features, labels, test_size=0.3, random_state=42)
 clf = DecisionTreeClassifier()
 clf.fit(features_train,labels_train)
-print(clf.score(features_test,labels_test))
+clf_score = clf.score(features_test,labels_test)
+print(f"Classifier accuracy after applying split conditions: {clf_score}")
 
+count_pre_poi = len([e for e in clf.predict(features_test) if e == 1.0])
+print(f"no. of identified poi's in test set: {count_pre_poi}")
+count_test_all = len(labels_test)
+print(f"no. of all people in test set: {count_test_all}")
+count_test_poi = len([e for e in labels_test if e == 1.0])
+# print(count_test_poi)
+acc_zero_poi = 1-(count_test_poi/count_test_all)
+print(f"Accuracy percentage if identifier predicts (not poi) only: {acc_zero_poi}")
+
+from sklearn.metrics import precision_score, recall_score
+pre_score = precision_score(labels_test,clf.predict(features_test))
+print(f"Precision score for test set and predicted set: {pre_score}")
+rcl_score = recall_score(labels_test,clf.predict(features_test))
+print(f"Recall score for test set and predicted set: {rcl_score}")
